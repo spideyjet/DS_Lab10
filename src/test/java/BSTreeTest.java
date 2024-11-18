@@ -1,5 +1,8 @@
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 class BSTreeTest {
@@ -15,6 +18,7 @@ class BSTreeTest {
 	void test() {
 		BSTree A = new BSTree();
 		BSTree Z = new BSTree();
+		BSTree Y = new BSTree();
 		
 		assertTrue(A.isEmpty());
 		
@@ -88,6 +92,11 @@ class BSTreeTest {
 		//comparing to empty tree
 		assertFalse(A.myEquals(Z));
 		
+		//comparing two empty trees
+		assertTrue(Z.myEquals(Y));
+		
+		assertFalse(Z.myEquals(A));
+		
 		BSTree D = new BSTree();
 		D.insert(50);
 		D.insert(25);
@@ -107,8 +116,63 @@ class BSTreeTest {
 		
 		assertFalse(C.myEquals(E));
 		
+		//same values with 500 700 and 1 switched and inserted more 
+		BSTree F = new BSTree();
+		F.insert(10);
+		F.insert(5);
+		F.insert(15);
+		F.insert(7);
+		F.insert(3);
+		F.insert(1);
+		F.insert(500);
+		F.insert(700);
+		F.insert(250);
+		F.insert(300);
+		F.insert(123);
+		F.insert(75);
+		F.insert(54);
+		F.insert(99);
+		F.insert(345);
+		F.insert(631);
+		F.insert(937);
+		
+		assertFalse(C.myEquals(F));
+		
+		BSTree H = new BSTree();
+		H.insert(10);
+		H.insert(5);
+		H.insert(15);
+		H.insert(7);
+		H.insert(3);
+		H.insert(1);
+		H.insert(500);
+		H.insert(700);
+		H.insert(250);
+		H.insert(300);
+		H.insert(123);
+		H.insert(75);
+		H.insert(54);
+		H.insert(99);
+		H.insert(345);
+		H.insert(631);
+		H.insert(937);
+		H.insert(123);
+		
+		assertFalse(F.myEquals(H));
+		
+		// in order list of values be
+		int [] A1 = {3, 5, 7, 10, 12, 15, 20,};
+		
+		BSTree ArrayValues = new BSTree();
+		
+		List<Integer> L = new ArrayList<Integer>();
+		
+		
+		
 		
 		
 	}
+	
+	
 
 }
