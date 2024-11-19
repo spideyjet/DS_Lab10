@@ -158,14 +158,11 @@ public class BSTree
      */
    public int sum()
    {
-	if(root == null)
-	{
-		return 0;
-	}
-	 int totalSum [] = {0};
-	 
-	 root.inOrderTraversal(new Consumer<Integer>());
-	   
+	   if(root == null)
+	   {
+		   return 0;
+	   }
+	   return this.root.addUp(null);
 	 
    }
 
@@ -183,8 +180,17 @@ public class BSTree
      */
    public boolean myEquals(BSTree that)
    {
-	return false;
-   
+	if(this.root == null && that.root != null)
+	{
+		return false;
+	}
+	else if(this.root == null && that.root == null)
+	{
+		return true;
+	}
+	
+	  return this.root.myEquals(that.root);
+	
    }
 
 

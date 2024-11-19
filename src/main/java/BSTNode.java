@@ -146,6 +146,7 @@ public class BSTNode<T extends Comparable<T>>
 	   {
 		   left.inOrderTraversal(consume);
 	   }
+	   consume.accept(val);
 	   if(right != null)
 	   {
 		   right.inOrderTraversal(consume);
@@ -169,10 +170,45 @@ public class BSTNode<T extends Comparable<T>>
 	{
 		return false;
 	}
+	boolean valEqual = val.equals(that.val);
+	boolean leftEqual;
+	boolean rightEqual;
 	
+	if(left == null)
+	{
+		leftEqual = (that.left == null);
+	}
+	else
+	{
+		leftEqual = left.myEquals(that.left);
+	}
+	if(right == null)
+	{
+		rightEqual = (that.right == null);
+	}
+	else
+	{
+		rightEqual = right.myEquals(that.right);
+	}
+	return valEqual && leftEqual && rightEqual;
+   }
+   
+   public int addUp(Consumer<T> consume)
+   {
+	int sum = 0;
 	
+	if(left != null)
+	{
+		sum = sum + left.addUp(consume);
+	}
+	if(right != null)
+	{
+		sum = sum + right.addUp(consume);
+	}
+	return sum + this.val;
+   }
+   
+}
+   
    
 
-   }
-
-}
