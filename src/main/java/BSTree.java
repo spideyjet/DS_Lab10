@@ -11,7 +11,7 @@ public class BSTree
 
    public BSTree()
    {
-   
+   this.root = null;
        
    }
 
@@ -29,6 +29,14 @@ public class BSTree
      */
    public void insert(Integer target)
    {
+	   if(root == null)
+	   {
+		   root = new BSTNode<>(target);
+	   }
+	   else
+	   {
+		   root.insert(target);
+	   }
    }
 
 
@@ -38,7 +46,11 @@ public class BSTree
      */
    public Integer retrieve(Integer target)
    {
-	return null;
+	if(root == null)
+	{
+		return null;
+	}
+	return root.retrieve(target);
    }
 
 
@@ -52,7 +64,12 @@ public class BSTree
      */
    public int retrieveDepth(Integer target)
    {
-	return 0;
+	if(root == null)
+	{
+		return 0;		
+	}
+	
+	return root.retrieveDepth(target);
        
    }
 
@@ -95,7 +112,11 @@ public class BSTree
     */
    public Integer largest()
    {
-	return null;
+	if(root == null)
+	{
+		return null;
+	}
+	return root.getLargest();
    
    }
 
@@ -119,6 +140,7 @@ public class BSTree
             {
                public void accept(Integer i)
                {
+            	   L.add(i);
                //need to add some code here...
                }
             });
@@ -136,7 +158,15 @@ public class BSTree
      */
    public int sum()
    {
-	return 0;
+	if(root == null)
+	{
+		return 0;
+	}
+	 int totalSum [] = {0};
+	 
+	 root.inOrderTraversal(new Consumer<Integer>());
+	   
+	 
    }
 
 

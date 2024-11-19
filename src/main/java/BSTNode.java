@@ -24,6 +24,10 @@ public class BSTNode<T extends Comparable<T>>
 
    public BSTNode(T val, BSTNode<T> l,BSTNode<T> r)
    {
+	   this.val = val;
+	   this.left = l;
+	   this.right = r;
+			   
    }
 
 
@@ -33,6 +37,30 @@ public class BSTNode<T extends Comparable<T>>
     */
    public void insert(T target)
    {
+	   int comparison = target.compareTo(val);
+	   
+	   if(comparison < 0) 
+	   {
+		   if(left == null)
+		   {
+			   left = new BSTNode<>(target);
+		   }
+		   else
+		   {
+			   left.insert(target);
+		   }
+		   if(comparison > 0)
+		   {
+			   if(right == null)
+			   {
+				   right = new BSTNode<>(target);
+			   }
+			   else
+			   {
+				   right.insert(target);
+			   }
+		   }
+	   }
    }
 
 
@@ -42,6 +70,30 @@ public class BSTNode<T extends Comparable<T>>
     */
    public T retrieve(T target)
    {
+		
+	if(val.equals(target))
+	{
+		return target;
+	}
+	if(val.compareTo(target) < 0 && left.val != null)
+	{
+		return left.retrieve(target);	
+	}
+	
+	if(val.compareTo(target) < 0 && left.val == null)
+	{
+		return null;
+	}
+	
+	if(val.compareTo(target) < 0 && right.val != null)
+	{
+		return right.retrieve(target);
+	}
+	
+	if(val.compareTo(target) < 0 && right.val == null)
+	{
+		return null;
+	}
 	return target;
    }
 
@@ -52,7 +104,21 @@ public class BSTNode<T extends Comparable<T>>
      */
    public int retrieveDepth(T target)
    {
-	return 0;
+	if(val.equals(target))
+	{
+		return 0;
+	}
+	
+	if(val.compareTo(target) < 0 && left.val != null)
+	{
+		return 1 + left.retrieveDepth(target) + 1;
+	}
+	
+	if(val.compareTo(target) < 0 && right.val != null)
+	{
+		return 1 + right.retrieveDepth(target);
+	}
+	return 1;
    }
 
    /**
@@ -60,7 +126,11 @@ public class BSTNode<T extends Comparable<T>>
     */
    public T getLargest()
    {
-	return null;
+	if(right.val == null)
+	{
+		return val;
+	}
+	return right.getLargest();
    }
 
 
@@ -72,7 +142,15 @@ public class BSTNode<T extends Comparable<T>>
     */
    public void inOrderTraversal(Consumer<T> consume)
    {
-
+	   if(left != null)
+	   {
+		   left.inOrderTraversal(consume);
+	   }
+	   if(right != null)
+	   {
+		   right.inOrderTraversal(consume);
+	   }
+	   return;
    }
 
 
@@ -87,7 +165,12 @@ public class BSTNode<T extends Comparable<T>>
     */
    public boolean myEquals(BSTNode<T> that)
    {
-	return false;
+	if(that == null)
+	{
+		return false;
+	}
+	
+	
    
 
    }
