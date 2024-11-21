@@ -158,13 +158,15 @@ public class BSTree
      */
    public int sum()
    {
-	   if(root == null)
-	   {
-		   return 0;
-	   }
-	   return this.root.addUp(null);
+		if(root == null)
+		{
+			return 0;
+		}
+		return root.addUp();
+	
+ }
 	 
-   }
+   
 
 
 

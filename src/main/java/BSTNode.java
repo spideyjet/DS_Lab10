@@ -49,7 +49,8 @@ public class BSTNode<T extends Comparable<T>>
 		   {
 			   left.insert(target);
 		   }
-		   if(comparison > 0)
+	   }
+	   else //(comparison > 0)
 		   {
 			   if(right == null)
 			   {
@@ -61,7 +62,7 @@ public class BSTNode<T extends Comparable<T>>
 			   }
 		   }
 	   }
-   }
+   
 
 
    /*
@@ -71,26 +72,27 @@ public class BSTNode<T extends Comparable<T>>
    public T retrieve(T target)
    {
 		
-	if(val.equals(target))
+	if(target.equals(val))
 	{
 		return target;
 	}
-	if(val.compareTo(target) < 0 && left.val != null)
+	
+	if(target.compareTo(val) < 0 && left != null)
 	{
 		return left.retrieve(target);	
 	}
 	
-	if(val.compareTo(target) < 0 && left.val == null)
+	if(target.compareTo(val) < 0 && left == null)
 	{
 		return null;
 	}
 	
-	if(val.compareTo(target) < 0 && right.val != null)
+	if(target.compareTo(val) > 0 && right != null)
 	{
 		return right.retrieve(target);
 	}
 	
-	if(val.compareTo(target) < 0 && right.val == null)
+	if(target.compareTo(val) > 0 && right == null)
 	{
 		return null;
 	}
@@ -104,17 +106,17 @@ public class BSTNode<T extends Comparable<T>>
      */
    public int retrieveDepth(T target)
    {
-	if(val.equals(target))
+	if(target.equals(val))
 	{
 		return 0;
 	}
 	
-	if(val.compareTo(target) < 0 && left.val != null)
+	if(target.compareTo(val) < 0 && left != null)
 	{
-		return 1 + left.retrieveDepth(target) + 1;
+		return 1 + left.retrieveDepth(target);
 	}
 	
-	if(val.compareTo(target) < 0 && right.val != null)
+	if(target.compareTo(val) > 0 && right != null)
 	{
 		return 1 + right.retrieveDepth(target);
 	}
@@ -126,7 +128,7 @@ public class BSTNode<T extends Comparable<T>>
     */
    public T getLargest()
    {
-	if(right.val == null)
+	if(right == null)
 	{
 		return val;
 	}
@@ -193,19 +195,19 @@ public class BSTNode<T extends Comparable<T>>
 	return valEqual && leftEqual && rightEqual;
    }
    
-   public int addUp(Consumer<T> consume)
+   public int addUp()
    {
 	int sum = 0;
 	
 	if(left != null)
 	{
-		sum = sum + left.addUp(consume);
+		sum = sum + left.addUp();
 	}
 	if(right != null)
 	{
-		sum = sum + right.addUp(consume);
+		sum = sum + right.addUp();
 	}
-	return sum + this.val;
+	return sum + (Integer) this.val;
    }
    
 }
